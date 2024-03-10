@@ -16,7 +16,7 @@ app.use(express.static(`${__dirname}/../public`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/view', viewsRouter)
+app.use('/home', viewsRouter)
 
 const httpServer = app.listen(8080, () => {
     console.log('Servidor listo!');
@@ -25,19 +25,7 @@ const httpServer = app.listen(8080, () => {
 // Creando un servidor para WS
 const wsServer = new Server(httpServer);
 
-const messages = [];
-
 // Un cliente nuevo se conecta
 wsServer.on('connection', (clientSocket) => {
-    console.log(`Cliente conectado, ID: ${clientSocket.id}`)
-
-    for (const m of messages) {
-        clientSocket.emit('message', m)
-    }
-
-    clientSocket.on('message', (message) => {
-        messages.push(message)
-        wsServer.emit('message', message)
-    })
 
 })
