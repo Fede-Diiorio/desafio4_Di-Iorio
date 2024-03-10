@@ -25,11 +25,18 @@ const httpServer = app.listen(8080, () => {
 // Creando un servidor para WS
 const wsServer = new Server(httpServer);
 
+const messages = [];
+
 // Un cliente nuevo se conecta
 wsServer.on('connection', (clientSocket) => {
     console.log(`Cliente conectado, ID: ${clientSocket.id}`)
 
-    clientSocket.on('new-message', (message) => {
+    for (const m of messages) {
+        clientSocket.emit('message', m)
+    }
+
+    clientSocket.on('message', (message) => {
+        messages.push(message)
         wsServer.emit('message', message)
     })
 

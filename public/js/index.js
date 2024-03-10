@@ -11,7 +11,7 @@ socket.on('message', (message) => {
 })
 
 document.querySelector('#sendMessage').addEventListener('click', () => {
-    socket.emit('new-message', { socketId: socket.id, text: getCurrentMessage() });
+    socket.emit('message', { socketId: socket.id, text: getCurrentMessage() });
 })
 
 
