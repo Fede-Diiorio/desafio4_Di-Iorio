@@ -1,9 +1,29 @@
-body {
-    text-align: center;
-    margin: 0 auto;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-    border-bottom: 1px solid grey;
-    padding-bottom: 1rem;
+.navBar {
+    background-color: #3b3bc0;
+}
+
+.navBar h1 {
+    text-align: center;
+    padding: 2rem;
+}
+
+.container {
+    text-align: center;
+    margin: 2rem auto;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.product {
+    background-color: #afafaf;
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 3rem;
 }
