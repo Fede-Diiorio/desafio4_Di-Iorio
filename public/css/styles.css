@@ -2,3 +2,8 @@ body {
     text-align: center;
     margin: 0 auto;
 }
+
+h1 {
+    border-bottom: 1px solid grey;
+    padding-bottom: 1rem;
+}

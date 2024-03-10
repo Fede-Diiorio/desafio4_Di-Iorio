@@ -28,4 +28,9 @@ const wsServer = new Server(httpServer);
 // Un cliente nuevo se conecta
 wsServer.on('connection', (clientSocket) => {
     console.log(`Cliente conectado, ID: ${clientSocket.id}`)
+
+    clientSocket.on('new-message', (message) => {
+        wsServer.emit('message', message)
+    })
+
 })
