@@ -12,6 +12,11 @@
 
 <body>
     {{{body}}}
+
+    {{#if useWS}}
+    <script src="/socket.io/socket.io.js"></script>
+    {{/if}}
+
     {{#each script}}
     <script src="/js/{{this}}"></script>
     {{/each}}

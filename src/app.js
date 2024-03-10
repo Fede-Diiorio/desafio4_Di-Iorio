@@ -1,5 +1,6 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
+const { Server } = require('socket.io');
 const viewsRouter = require('./routes/views.router');
 const app = express();
 
@@ -17,6 +18,14 @@ app.use(express.json());
 
 app.use('/view', viewsRouter)
 
-app.listen(8080, () => {
+const httpServer = app.listen(8080, () => {
     console.log('Servidor listo!');
 });
+
+// Creando un servidor para WS
+const wsServer = new Server(httpServer);
+
+// Un cliente nuevo se conecta
+wsServer.on('connection', (clientSocket) => {
+    console.log(`Cliente conectado, ID: ${clientSocket.id}`)
+})
