@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const ProductManager = require('../ProductManager');
-const { io } = require('../app');
+
 
 const manager = new ProductManager(`${__dirname}/../../assets/products.json`);
 
@@ -32,16 +32,29 @@ router.get('/', async (_, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    try {
-        io.emit('newProduct', title, description, price, thumbnail, code, status, stock)
-        console.log({ title, description, price, thumbnail, code, status, stock });
-        await manager.addProduct(title, description, price, thumbnail, code, status, stock);
+router.post('/', (req, res) => {
+    const wsServer = req.app.get('ws');
 
-        res.send('Producto agregado exitosamente');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error interno del servidor');
-    }
+    wsServer.on('connection', (socket) => {
+        console.log('Cliente conectado en producto');
+        socket.on('newProduct', async (newProduct) => {
+            try {
+                console.log('Nuevo producto recibido: ', newProduct);
+
+                const { title, description, price, thumbnail, code, status, stock } = newProduct;
+
+                await manager.addProduct(title, description, price, thumbnail, code, status, stock);
+
+                socket.emit('productAdded', 'Producto agregado exitosamente');
+
+                wsServer.emit('productAdded', 'Nuevo producto agregado: ' + title);
+            } catch (error) {
+                console.error(error);
+
+                socket.emit('productError', 'Error interno al procesar el producto');
+            }
+        });
+    });
 });
+
 module.exports = router;

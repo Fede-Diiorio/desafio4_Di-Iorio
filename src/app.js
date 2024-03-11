@@ -24,10 +24,12 @@ const httpServer = app.listen(8080, () => {
     console.log('Servidor listo!');
 });
 
-const io = new Server(httpServer);
+const wsServer = new Server(httpServer);
+app.set('ws', wsServer)
 
-io.on('connection', (socket) => {
+wsServer.on('connection', (socket) => {
     console.log('Nuevo cliente conectado via WebSocket');
 
     // Agregar lógica de websocket => pendiente
 })
+
