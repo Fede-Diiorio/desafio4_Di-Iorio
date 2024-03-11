@@ -17,7 +17,13 @@ router.get('/', async (_, res) => {
             code: product.code
         }));
 
-        res.render('home', { products: productsData, titlePage: 'Productos', h1: 'Tienda', style: ['styles.css'] });
+        res.render('home', {
+            products: productsData,
+            titlePage: 'Productos',
+            h1: 'Tienda',
+            style: ['styles.css'],
+            script: ['home.js']
+        });
     } catch (error) {
         console.error(error);
         res.status(500).send('Error interno del servidor');

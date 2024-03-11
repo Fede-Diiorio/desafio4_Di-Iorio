@@ -1,7 +1,8 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const { Server } = require('socket.io');
-const viewsRouter = require('./routes/views.router');
+const homeRouter = require('./routes/home.router');
+const realTimeProductsRouter = require('./routes/realTimeProducts.router')
 const app = express();
 
 
@@ -16,16 +17,17 @@ app.use(express.static(`${__dirname}/../public`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/home', viewsRouter)
+app.use('/home', homeRouter)
+app.use('/realTimeProducts', realTimeProductsRouter)
 
 const httpServer = app.listen(8080, () => {
     console.log('Servidor listo!');
 });
 
-// Creando un servidor para WS
-const wsServer = new Server(httpServer);
+const io = new Server(httpServer);
 
-// Un cliente nuevo se conecta
-wsServer.on('connection', (clientSocket) => {
+io.on('connection', (socket) => {
+    console.log('Nuevo cliente conectado via WebSocket');
 
+    // Agregar lógica de websocket => pendiente
 })
