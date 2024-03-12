@@ -102,11 +102,11 @@
   {
     "id": 11,
     "title": "Testeo",
-    "description": "Descripcion de testeo",
-    "price": 1000,
-    "thumbnail": "./img/ssd240.webp",
-    "code": "codi8543",
+    "description": "Desc",
+    "price": 40,
+    "thumbnail": "Sin Imagen",
+    "code": "40",
     "status": true,
-    "stock": 8
+    "stock": 40
   }
 ]
