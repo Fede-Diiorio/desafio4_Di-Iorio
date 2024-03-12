@@ -43,7 +43,7 @@ class ProductManager {
             throw new Error('Debe completar todos los campos');
         }
 
-        if (typeof status === 'undefined' || status === true) {
+        if (typeof status === 'undefined' || status === true || status === 'true') {
             status = true;
         } else {
             status = false;

@@ -32,29 +32,25 @@ router.get('/', async (_, res) => {
     }
 });
 
-router.post('/', (req, res) => {
-    const wsServer = req.app.get('ws');
+router.post('/', async (req, res) => {
+    try {
+        const { title, description, price, thumbnail, code, status, stock } = req.body;
+        console.log(req.body);
 
-    wsServer.on('connection', (socket) => {
-        console.log('Cliente conectado en producto');
-        socket.on('newProduct', async (newProduct) => {
-            try {
-                console.log('Nuevo producto recibido: ', newProduct);
+        const numericPrice = parseFloat(price);
+        const numericStock = parseInt(stock);
 
-                const { title, description, price, thumbnail, code, status, stock } = newProduct;
+        if (isNaN(numericPrice) || isNaN(numericStock)) {
+            throw new Error('Price y Stock deben ser valores numéricos');
+        }
 
-                await manager.addProduct(title, description, price, thumbnail, code, status, stock);
+        await manager.addProduct(title, description, numericPrice, thumbnail, code, status, numericStock);
 
-                socket.emit('productAdded', 'Producto agregado exitosamente');
-
-                wsServer.emit('productAdded', 'Nuevo producto agregado: ' + title);
-            } catch (error) {
-                console.error(error);
-
-                socket.emit('productError', 'Error interno al procesar el producto');
-            }
-        });
-    });
+        res.redirect('/realTimeProducts');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error interno del servidor');
+    }
 });
 
 module.exports = router;
