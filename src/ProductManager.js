@@ -55,7 +55,10 @@ class ProductManager {
             thumbnail;
         }
 
-        if (stock <= 0 && price <= 0) {
+        const numericPrice = parseFloat(price)
+        const numericStock = parseInt(stock)
+
+        if (numericStock < 0 && numericPrice <= 0) {
             throw new Error('Asegúrese de que stock y price sean valores de tipo "number" superiores o iguales a 0');
         }
 
@@ -63,7 +66,7 @@ class ProductManager {
         const findProductCode = existingProduct.find(field => field.code === code)
 
         if (!findProductCode) {
-            const product = { id: this.#getNewId(), title, description, price, thumbnail, code, status, stock };
+            const product = { id: this.#getNewId(), title, description, price: numericPrice, thumbnail, code, status, stock: numericStock };
             this.#products.push(product);
             await this.#saveFile();
             console.log('Agregado Correctamente');

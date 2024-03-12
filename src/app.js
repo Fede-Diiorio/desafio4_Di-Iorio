@@ -29,7 +29,5 @@ app.set('ws', wsServer)
 
 wsServer.on('connection', (socket) => {
     console.log('Nuevo cliente conectado via WebSocket');
-
-    // Agregar lógica de websocket => pendiente
 })
 

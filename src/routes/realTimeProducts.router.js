@@ -35,16 +35,14 @@ router.get('/', async (_, res) => {
 router.post('/', async (req, res) => {
     try {
         const { title, description, price, thumbnail, code, status, stock } = req.body;
-        console.log(req.body);
 
-        const numericPrice = parseFloat(price);
-        const numericStock = parseInt(stock);
+        const newProduct = { title, description, price, thumbnail, code, status, stock }
 
-        if (isNaN(numericPrice) || isNaN(numericStock)) {
-            throw new Error('Price y Stock deben ser valores numéricos');
+        await manager.addProduct(title, description, price, thumbnail, code, status, stock);
+
+        if (newProduct.title && newProduct.description && newProduct.price && newProduct.code && newProduct.stock) {
+            req.app.get('ws').emit('newProduct', newProduct);
         }
-
-        await manager.addProduct(title, description, numericPrice, thumbnail, code, status, numericStock);
 
         res.redirect('/realTimeProducts');
     } catch (error) {

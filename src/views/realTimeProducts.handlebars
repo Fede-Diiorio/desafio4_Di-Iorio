@@ -1,5 +1,5 @@
 <div class="form">
-    <form action="/realTimeProducts" id="productForm" method="post">
+    <form action="/realTimeProducts" id="productForm" method="post" enctype="application/x-www-form-urlencoded">
         <legend>Agregar Producto</legend>
         <div>
             <label>Titulo: </label>
@@ -35,7 +35,7 @@
     </form>
 </div>
 
-<div class="container">
+<div class="container" id="productFeed">
     {{#each products}}
     <div class="product">
         <h4>{{title}}</h4>
