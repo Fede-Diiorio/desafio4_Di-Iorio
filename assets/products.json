@@ -102,11 +102,21 @@
   {
     "id": 11,
     "title": "Testeo",
-    "description": "Desc",
-    "price": 40,
+    "description": "Descripcion de testeo",
+    "price": 1000,
     "thumbnail": "Sin Imagen",
-    "code": "40",
+    "code": "1000",
     "status": true,
-    "stock": 40
+    "stock": 10
+  },
+  {
+    "id": 12,
+    "title": "Nueva Prueba",
+    "description": "Probando mi amor por ti",
+    "price": 1000,
+    "thumbnail": "./img/ssd240.webp",
+    "code": "fed645",
+    "status": true,
+    "stock": 4
   }
 ]

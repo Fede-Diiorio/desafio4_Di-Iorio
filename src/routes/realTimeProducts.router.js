@@ -15,8 +15,7 @@ router.get('/', async (_, res) => {
             description: product.description,
             price: product.price,
             stock: product.stock,
-            code: product.code,
-            id: product.id
+            code: product.code
         }));
 
         res.render('realTimeProducts', {
@@ -39,13 +38,15 @@ router.post('/', async (req, res) => {
 
         const newProduct = { title, description, price, thumbnail, code, status, stock }
 
+        console.log(newProduct);
+
         await manager.addProduct(title, description, price, thumbnail, code, status, stock);
 
         if (newProduct.title && newProduct.description && newProduct.price && newProduct.code && newProduct.stock) {
             req.app.get('ws').emit('newProduct', newProduct);
         }
 
-        res.status(301).redirect('/realTimeProducts');
+        res.redirect('/realTimeProducts');
     } catch (error) {
         console.error(error);
         res.status(500).send('Error interno del servidor');
