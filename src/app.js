@@ -17,8 +17,8 @@ app.use(express.static(`${__dirname}/../public`));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/home', homeRouter)
-app.use('/realTimeProducts', realTimeProductsRouter)
+app.use('/api/home', homeRouter)
+app.use('/api/realTimeProducts', realTimeProductsRouter)
 
 const httpServer = app.listen(8080, () => {
     console.log('Servidor listo!');

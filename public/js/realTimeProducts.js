@@ -1,7 +1,10 @@
 const socket = io();
 
+// Escuchar el evento 'newProduct' enviado desde el servidor cuando se agrega un nuevo producto
 socket.on('newProduct', (newProduct) => {
-    const container = document.getElementById('productFeed')
+
+    // Manejo del DOM para generar el nuevo producto en el HTML
+    const container = document.getElementById('productFeed');
 
     const divContainer = document.createElement('div');
     divContainer.classList.add('product');
@@ -20,23 +23,26 @@ socket.on('newProduct', (newProduct) => {
     description.innerText = newProduct.description;
 
     const price = document.createElement('p');
-    price.innerText = `Precio: ${newProduct.price}`
+    price.innerText = `Precio: ${newProduct.price}`;
 
     const stock = document.createElement('p');
-    stock.innerText = `Stock: ${newProduct.stock}`
+    stock.innerText = `Stock: ${newProduct.stock}`;
 
     const code = document.createElement('p');
-    code.innerText = `Código: ${newProduct.code}`
+    code.innerText = `Código: ${newProduct.code}`;
 
     divInfo.append(description, price, stock, code);
     divContainer.append(title, thumbnail, divInfo);
     container.append(divContainer);
 })
 
+// Escuchar el evento 'updateFeed' enviado desde el servidor cuando se actualiza la lista de productos
 socket.on('updateFeed', (products) => {
-    console.log(products);
+
+    // Manejo del DOM para generar el nuevo producto en el HTML
     const container = document.getElementById('productFeed');
     container.innerHTML = '';
+
     products.forEach((product) => {
         const divContainer = document.createElement('div');
         divContainer.classList.add('product');
@@ -55,16 +61,16 @@ socket.on('updateFeed', (products) => {
         description.innerText = product.description;
 
         const price = document.createElement('p');
-        price.innerText = `Precio: ${product.price}`
+        price.innerText = `Precio: ${product.price}`;
 
         const stock = document.createElement('p');
-        stock.innerText = `Stock: ${product.stock}`
+        stock.innerText = `Stock: ${product.stock}`;
 
         const code = document.createElement('p');
-        code.innerText = `Código: ${product.code}`
+        code.innerText = `Código: ${product.code}`;
 
         divInfo.append(description, price, stock, code);
         divContainer.append(title, thumbnail, divInfo);
-        container.append(divContainer)
+        container.append(divContainer);
     })
 })
