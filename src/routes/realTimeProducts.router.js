@@ -39,6 +39,8 @@ router.post('/', async (req, res) => {
 
         const newProduct = { title, description, price, thumbnail, code, status, stock }
 
+        console.log(newProduct);
+
         await manager.addProduct(title, description, price, thumbnail, code, status, stock);
 
         if (newProduct.title && newProduct.description && newProduct.price && newProduct.code && newProduct.stock) {
@@ -49,6 +51,16 @@ router.post('/', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error interno del servidor');
+    }
+});
+
+router.delete('/:pid', async (req, res) => {
+    try {
+        const productId = parseInt(req.params.pid);
+        await manager.deleteProduct(productId);
+        res.status(200).json({ message: 'Producto eliminado' });
+    } catch {
+        res.status(500).json({ error: 'Error al eliminar el producto' });
     }
 });
 

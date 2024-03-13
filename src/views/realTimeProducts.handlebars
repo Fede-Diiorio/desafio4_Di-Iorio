@@ -37,7 +37,7 @@
     </form>
 </div>
 
-<div class="container">
+<div class="container" id="productFeed">
     {{#each products}}
     <div class="product">
         <h4>{{title}}</h4>
@@ -48,6 +48,7 @@
             <p>Stock: {{stock}}</p>
             <p>Código: {{code}}</p>
         </div>
+        <button id="">Eliminar</button>
     </div>
     {{/each}}
 </div>

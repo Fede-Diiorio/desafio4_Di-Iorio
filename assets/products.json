@@ -101,22 +101,42 @@
   },
   {
     "id": 11,
-    "title": "Testeo",
-    "description": "Desc",
-    "price": 40,
+    "title": "Test",
+    "description": "Descripcion de testeo",
+    "price": 200,
     "thumbnail": "Sin Imagen",
-    "code": "40",
+    "code": "zad258",
     "status": true,
-    "stock": 40
+    "stock": 50
   },
   {
     "id": 12,
-    "title": "En vivo ",
-    "description": "ahora en vivop",
-    "price": 500,
+    "title": "Titulo",
+    "description": "Descripcion",
+    "price": 4000,
     "thumbnail": "Sin Imagen",
-    "code": "500",
+    "code": "holas",
     "status": true,
-    "stock": 500
+    "stock": 5
+  },
+  {
+    "id": 13,
+    "title": "Testeo",
+    "description": "Descripcion de testeo",
+    "price": 10,
+    "thumbnail": "Sin Imagen",
+    "code": "654d",
+    "status": true,
+    "stock": 4
+  },
+  {
+    "id": 14,
+    "title": "Ahora sí",
+    "description": "Este es el problema",
+    "price": 1000,
+    "thumbnail": "Sin Imagen",
+    "code": "8732",
+    "status": true,
+    "stock": 9
   }
 ]
