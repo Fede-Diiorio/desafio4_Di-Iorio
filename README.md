@@ -34,7 +34,9 @@ Puedes acceder a websocket mediante la navegación del sitio o bien ingresando a
 Para agregar un producto encontraras un pequeño formulario que te permite cargar un nuevo producto el cual se actualizará en tiempo real mediante websocket.
 Para ver esto con mayor facilidad se recomienda correr el sitio en dos pestañas diferentes a la hora de cargar el producto desde el formulario.
 
-![Ejemplo](https://github.com/Fede-Diiorio/desafio4_Di-Iorio/blob/main/public/img/ejemploForm.png)
+**Ejemplo:**
+
+![Ejemplo](https://github.com/Fede-Diiorio/desafio4_Di-Iorio/blob/main/public/img/ejemploForm.png?raw=true)
 
 ### Eliminar producto existente
 
